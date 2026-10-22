@@ -1,0 +1,18 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.DS_Store
+
+# The interaction layer is 714 MB - see docs/DATA.md for how to obtain it.
+# Everything else in data/ is small and is committed.
+data/protein_protein_association_neo4j.csv
+data/protein_node_neo4j.csv
+data/cache/pmid_cache.json

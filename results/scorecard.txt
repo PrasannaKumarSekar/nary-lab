@@ -1,0 +1,51 @@
+====================================================================================
+REPRESENTATION SCORECARD  |  corum_complexes
+====================================================================================
+
+LAYER 0  STRUCTURE (cheap descriptors, computed before any experiment)
+  groups 5,222   members 4,777   incidences 17,138
+  group size: mean 3.28  median 2  max 25
+  pairs only 51% | three or more members 49%
+  hub concentration 3.8% | recurrence 0.986 | mean overlap 0.244
+  conformality 0.696
+  PREDICTED [scope]: Mean group size 3.28 with 49% of groups above pair size: the comparison is in scope.
+  PREDICTED [failure_mode]: Hub concentration 3.8% is low, so the pairwise graph stays sparse. Dissolving should mainly cause smaller groups to **vanish** inside larger ones rather than inventing new ones.
+  PREDICTED [learnability]: Recurrence 0.99: nearly every group has a distinct composition, so set-level prediction has little regularity to learn.
+  PREDICTED [recoverability]: Conformality 0.70: that share of groups is exactly recoverable from the pairwise graph; the rest is not.
+
+LAYER 1  REPRESENTATIONAL FIDELITY (round trip, measured)
+  dissolved  LOSSY     F1 0.696  invented    973  vanished  1,885  claim holds: yes
+  reified    LOSSLESS  F1 1.000  invented      0  vanished      0  claim holds: yes
+  native     LOSSLESS  F1 1.000  invented      0  vanished      0  claim holds: yes
+  dissolved recovery by group size -> 2:0.56  3:0.71  4:0.74  5:0.69  6:0.77  7:0.67  8:0.56  9:0.60  10:0.60  11:0.74  12:0.67  13:0.90  14:0.43  15:0.71  16:0.86
+
+LAYER 2  ANALYTICAL CAPABILITY
+  queries  dissolved  0/5 answered exactly   co_membership:0.94  exclusion:0.00  group_size:0.00  exact_composition:0.00  group_lookup:0.00
+  queries  reified    5/5 answered exactly   co_membership:1.00  exclusion:1.00  group_size:1.00  exact_composition:1.00  group_lookup:1.00
+  queries  native     5/5 answered exactly   co_membership:1.00  exclusion:1.00  group_size:1.00  exact_composition:1.00  group_lookup:1.00
+  community  pairwise_unweighted      NMI 0.387  ARI 0.115
+  community  pairwise_size_weighted   NMI 0.389  ARI 0.111
+  community  hypergraph_laplacian     NMI 0.386  ARI 0.112
+  operator equivalence: hypergraph vs size-weighted pairwise max|diff| 4.44e-16 -> CONFIRMED
+  formation prediction (timestamp): 1,511 candidates, 37 positives (base rate 2.45%)  [UNDERPOWERED]
+      null distribution (2000 random rankings): mean x1.19, 95th pct x1.85 - a scorer must clear this to mean anything
+      common_neighbours          AP 0.0585  lift x2.39  p=0.015  beats chance
+      tie_strength_geometric     AP 0.0504  lift x2.06  p=0.035  beats chance
+      tie_strength_harmonic      AP 0.0458  lift x1.87  p=0.049  beats chance
+      tie_strength_arithmetic    AP 0.0427  lift x1.74  p=0.059  within noise
+      preferential_attachment    AP 0.0225  lift x0.92  p=0.876  within noise
+
+LAYER 3  IMPLEMENTATION TRADE-OFFS
+  dissolved  nodes    4,777  edges   20,976   (nodes 1.00x, edges 1.00x vs pairwise)
+  reified    nodes    9,999  edges   17,138   (nodes 2.09x, edges 0.82x vs pairwise)
+  native     nodes    4,777  edges    5,222   (nodes 1.00x, edges 0.25x vs pairwise)
+  tooling issues logged: 5
+
+VERDICT
+  Dissolving complexes into pairs loses information: F1 0.696, 973 groups invented, 1,885 lost.
+  Hub nodes and hyperedges are both lossless and carry identical information; the choice between them is operational, not representational.
+  Query expressibility: pairwise answers 0/5 question types exactly; group-preserving forms answer all of them.
+  Hypergraph spectral clustering is the size-weighted pairwise operator (verified numerically), so no advantage should be expected there, and none is observed.
+  Footprint: hub nodes add 5,222 nodes but -18% edges relative to the pairwise graph.
+  The separately sourced interaction layer covers only 10.9% of complex co-membership pairs, so it is not a substitute for complex records.
+====================================================================================

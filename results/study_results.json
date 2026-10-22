@@ -1,0 +1,861 @@
+{
+  "dataset": "corum_complexes",
+  "config": {
+    "data_dir": "data",
+    "out_dir": "results",
+    "cache_path": "data/cache/pmid_year.json",
+    "member_column": ":END_ID",
+    "min_group_size": 2,
+    "max_group_size": 25,
+    "query_instances": 300,
+    "time_quantile": 0.5,
+    "seed": 0,
+    "run_ppi": true,
+    "run_formation": true,
+    "run_communities": true
+  },
+  "load_report": {
+    "rows": 18671,
+    "groups_built": 5247,
+    "members_distinct": 5039,
+    "source_accessions": 5232,
+    "accession_collapse": 125,
+    "dropped": {
+      "below_min_size": 307
+    },
+    "evidence_values": 3475,
+    "groups_without_evidence": 0
+  },
+  "size_filter_dropped": {
+    "above_max_size": 25
+  },
+  "time_basis": "Time axis: publication year resolved for 5222/5222 complexes (1968-2025).",
+  "descriptors": {
+    "n_groups": 5222,
+    "n_members": 4777,
+    "n_incidences": 17138,
+    "mean_group_size": 3.2818843355036385,
+    "median_group_size": 2.0,
+    "max_group_size": 25,
+    "frac_above_pair": 0.4911911145155113,
+    "frac_pairs_only": 0.5088088854844887,
+    "hub_concentration": 0.037869062901155326,
+    "top_member_share": 0.006243435640098028,
+    "members_in_one_group": 0.42872095457400045,
+    "recurrence": 0.9862121792416698,
+    "mean_overlap": 0.24354251902917518,
+    "overlapping_group_pairs": 69203,
+    "overlap_members_capped": 0,
+    "implied_pairs": 20976,
+    "pair_collision": 0.4203443225467709,
+    "conformality": 0.6955688112484022,
+    "size_histogram": {
+      "2": 2657,
+      "3": 1455,
+      "4": 418,
+      "5": 211,
+      "6": 95,
+      "7": 73,
+      "8": 57,
+      "9": 53,
+      "10": 50,
+      "11": 23,
+      "12": 30,
+      "13": 21,
+      "14": 21,
+      "15": 14,
+      "16": 14,
+      "17": 7,
+      "18": 4,
+      "19": 5,
+      "20": 3,
+      "22": 2,
+      "23": 4,
+      "24": 3,
+      "25": 2
+    }
+  },
+  "prediction": {
+    "scope": "Mean group size 3.28 with 49% of groups above pair size: the comparison is in scope.",
+    "failure_mode": "Hub concentration 3.8% is low, so the pairwise graph stays sparse. Dissolving should mainly cause smaller groups to **vanish** inside larger ones rather than inventing new ones.",
+    "learnability": "Recurrence 0.99: nearly every group has a distinct composition, so set-level prediction has little regularity to learn.",
+    "recoverability": "Conformality 0.70: that share of groups is exactly recoverable from the pairwise graph; the rest is not."
+  },
+  "fidelity": [
+    {
+      "representation": "dissolved",
+      "n_true_groups": 5150,
+      "n_recovered": 4238,
+      "exact": 3265,
+      "precision": 0.770410571024068,
+      "recall": 0.6339805825242718,
+      "f1": 0.6955688112484022,
+      "invented": 973,
+      "vanished": 1885,
+      "lossless": false,
+      "claims_lossless": false,
+      "claim_holds": true,
+      "by_size": {
+        "2": {
+          "n_true": 2593,
+          "n_recovered": 1460,
+          "rate": 0.563054377169302
+        },
+        "3": {
+          "n_true": 1450,
+          "n_recovered": 1026,
+          "rate": 0.7075862068965517
+        },
+        "4": {
+          "n_true": 416,
+          "n_recovered": 307,
+          "rate": 0.7379807692307693
+        },
+        "5": {
+          "n_true": 211,
+          "n_recovered": 146,
+          "rate": 0.6919431279620853
+        },
+        "6": {
+          "n_true": 95,
+          "n_recovered": 73,
+          "rate": 0.7684210526315789
+        },
+        "7": {
+          "n_true": 72,
+          "n_recovered": 48,
+          "rate": 0.6666666666666666
+        },
+        "8": {
+          "n_true": 57,
+          "n_recovered": 32,
+          "rate": 0.5614035087719298
+        },
+        "9": {
+          "n_true": 53,
+          "n_recovered": 32,
+          "rate": 0.6037735849056604
+        },
+        "10": {
+          "n_true": 50,
+          "n_recovered": 30,
+          "rate": 0.6
+        },
+        "11": {
+          "n_true": 23,
+          "n_recovered": 17,
+          "rate": 0.7391304347826086
+        },
+        "12": {
+          "n_true": 30,
+          "n_recovered": 20,
+          "rate": 0.6666666666666666
+        },
+        "13": {
+          "n_true": 21,
+          "n_recovered": 19,
+          "rate": 0.9047619047619048
+        },
+        "14": {
+          "n_true": 21,
+          "n_recovered": 9,
+          "rate": 0.42857142857142855
+        },
+        "15": {
+          "n_true": 14,
+          "n_recovered": 10,
+          "rate": 0.7142857142857143
+        },
+        "16": {
+          "n_true": 14,
+          "n_recovered": 12,
+          "rate": 0.8571428571428571
+        },
+        "-1": {
+          "n_true": 30,
+          "n_recovered": 24,
+          "rate": 0.8,
+          "label": "remaining larger sizes pooled"
+        }
+      },
+      "notes": "Reconstruction by maximal-clique enumeration, the strongest decoder available to a consumer of a pairwise graph."
+    },
+    {
+      "representation": "reified",
+      "n_true_groups": 5150,
+      "n_recovered": 5150,
+      "exact": 5150,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "invented": 0,
+      "vanished": 0,
+      "lossless": true,
+      "claims_lossless": true,
+      "claim_holds": true,
+      "by_size": {
+        "2": {
+          "n_true": 2593,
+          "n_recovered": 2593,
+          "rate": 1.0
+        },
+        "3": {
+          "n_true": 1450,
+          "n_recovered": 1450,
+          "rate": 1.0
+        },
+        "4": {
+          "n_true": 416,
+          "n_recovered": 416,
+          "rate": 1.0
+        },
+        "5": {
+          "n_true": 211,
+          "n_recovered": 211,
+          "rate": 1.0
+        },
+        "6": {
+          "n_true": 95,
+          "n_recovered": 95,
+          "rate": 1.0
+        },
+        "7": {
+          "n_true": 72,
+          "n_recovered": 72,
+          "rate": 1.0
+        },
+        "8": {
+          "n_true": 57,
+          "n_recovered": 57,
+          "rate": 1.0
+        },
+        "9": {
+          "n_true": 53,
+          "n_recovered": 53,
+          "rate": 1.0
+        },
+        "10": {
+          "n_true": 50,
+          "n_recovered": 50,
+          "rate": 1.0
+        },
+        "11": {
+          "n_true": 23,
+          "n_recovered": 23,
+          "rate": 1.0
+        },
+        "12": {
+          "n_true": 30,
+          "n_recovered": 30,
+          "rate": 1.0
+        },
+        "13": {
+          "n_true": 21,
+          "n_recovered": 21,
+          "rate": 1.0
+        },
+        "14": {
+          "n_true": 21,
+          "n_recovered": 21,
+          "rate": 1.0
+        },
+        "15": {
+          "n_true": 14,
+          "n_recovered": 14,
+          "rate": 1.0
+        },
+        "16": {
+          "n_true": 14,
+          "n_recovered": 14,
+          "rate": 1.0
+        },
+        "-1": {
+          "n_true": 30,
+          "n_recovered": 30,
+          "rate": 1.0,
+          "label": "remaining larger sizes pooled"
+        }
+      },
+      "notes": ""
+    },
+    {
+      "representation": "native",
+      "n_true_groups": 5150,
+      "n_recovered": 5150,
+      "exact": 5150,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "invented": 0,
+      "vanished": 0,
+      "lossless": true,
+      "claims_lossless": true,
+      "claim_holds": true,
+      "by_size": {
+        "2": {
+          "n_true": 2593,
+          "n_recovered": 2593,
+          "rate": 1.0
+        },
+        "3": {
+          "n_true": 1450,
+          "n_recovered": 1450,
+          "rate": 1.0
+        },
+        "4": {
+          "n_true": 416,
+          "n_recovered": 416,
+          "rate": 1.0
+        },
+        "5": {
+          "n_true": 211,
+          "n_recovered": 211,
+          "rate": 1.0
+        },
+        "6": {
+          "n_true": 95,
+          "n_recovered": 95,
+          "rate": 1.0
+        },
+        "7": {
+          "n_true": 72,
+          "n_recovered": 72,
+          "rate": 1.0
+        },
+        "8": {
+          "n_true": 57,
+          "n_recovered": 57,
+          "rate": 1.0
+        },
+        "9": {
+          "n_true": 53,
+          "n_recovered": 53,
+          "rate": 1.0
+        },
+        "10": {
+          "n_true": 50,
+          "n_recovered": 50,
+          "rate": 1.0
+        },
+        "11": {
+          "n_true": 23,
+          "n_recovered": 23,
+          "rate": 1.0
+        },
+        "12": {
+          "n_true": 30,
+          "n_recovered": 30,
+          "rate": 1.0
+        },
+        "13": {
+          "n_true": 21,
+          "n_recovered": 21,
+          "rate": 1.0
+        },
+        "14": {
+          "n_true": 21,
+          "n_recovered": 21,
+          "rate": 1.0
+        },
+        "15": {
+          "n_true": 14,
+          "n_recovered": 14,
+          "rate": 1.0
+        },
+        "16": {
+          "n_true": 14,
+          "n_recovered": 14,
+          "rate": 1.0
+        },
+        "-1": {
+          "n_true": 30,
+          "n_recovered": 30,
+          "rate": 1.0,
+          "label": "remaining larger sizes pooled"
+        }
+      },
+      "notes": "72 groups share a member set with another and merge into one hyperedge: set semantics preserve membership but not group identity."
+    }
+  ],
+  "independent_ppi_coverage": {
+    "implied_pairs": 20976,
+    "observed_pairs_total": 64518,
+    "implied_pairs_observed": 2296,
+    "pair_coverage": 0.10945842868039664,
+    "mean_group_coverage": 0.12203112273878171,
+    "groups_fully_covered": 0.07200306396016852,
+    "groups_with_no_coverage": 0.7292225201072386
+  },
+  "ppi_stats": {
+    "method": {
+      "textmining": 2846848,
+      "experimental": 1040393,
+      "anti tag coip": 580726,
+      "coexpression": 563660,
+      "database": 150233,
+      "proximity-dependent biotin identification": 99631,
+      "validated two hybrid": 95594,
+      "neighborhood": 78439,
+      "holdup assay": 63797,
+      "inferred by curator": 55088,
+      "anti bait coip": 49339,
+      "two hybrid prey pooling approach": 37046,
+      "cooccurence": 36623,
+      "tap": 36390,
+      "pull down": 30512
+    },
+    "source": {
+      "string": 4722365,
+      "intact": 1125219,
+      "reactome": 28050,
+      "signor": 27038
+    },
+    "method_kept": {
+      "textmining": 63770,
+      "experimental": 17426,
+      "anti tag coip": 14714,
+      "coexpression": 9952,
+      "inferred by curator": 4351,
+      "proximity-dependent biotin identification": 3349,
+      "database": 2520,
+      "holdup assay": 1768,
+      "anti bait coip": 1740,
+      "tap": 1525,
+      "pull down": 1185,
+      "validated two hybrid": 959,
+      "2 hybrid": 630,
+      "neighborhood": 510,
+      "crosslink": 505
+    },
+    "source_kept": {
+      "string": 94500,
+      "intact": 30182,
+      "reactome": 2331,
+      "signor": 2020
+    }
+  },
+  "queries": [
+    {
+      "family": "co_membership",
+      "representation": "dissolved",
+      "precision": 0.908271199909307,
+      "recall": 1.0,
+      "f1": 0.9361578360789785,
+      "expressible": true,
+      "n_instances": 300,
+      "note": ""
+    },
+    {
+      "family": "co_membership",
+      "representation": "reified",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "expressible": true,
+      "n_instances": 300,
+      "note": ""
+    },
+    {
+      "family": "co_membership",
+      "representation": "native",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "expressible": true,
+      "n_instances": 300,
+      "note": ""
+    },
+    {
+      "family": "exclusion",
+      "representation": "dissolved",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "expressible": false,
+      "n_instances": 300,
+      "note": "complexes are not objects in a pairwise graph"
+    },
+    {
+      "family": "exclusion",
+      "representation": "reified",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "expressible": true,
+      "n_instances": 300,
+      "note": ""
+    },
+    {
+      "family": "exclusion",
+      "representation": "native",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "expressible": true,
+      "n_instances": 300,
+      "note": ""
+    },
+    {
+      "family": "group_size",
+      "representation": "dissolved",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "expressible": false,
+      "n_instances": 1,
+      "note": "no object whose size could be inspected"
+    },
+    {
+      "family": "group_size",
+      "representation": "reified",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "expressible": true,
+      "n_instances": 1,
+      "note": ""
+    },
+    {
+      "family": "group_size",
+      "representation": "native",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "expressible": true,
+      "n_instances": 1,
+      "note": ""
+    },
+    {
+      "family": "exact_composition",
+      "representation": "dissolved",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "expressible": false,
+      "n_instances": 300,
+      "note": "a pairwise graph cannot distinguish a real composition from any set whose members happen to be mutually connected"
+    },
+    {
+      "family": "exact_composition",
+      "representation": "reified",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "expressible": true,
+      "n_instances": 300,
+      "note": ""
+    },
+    {
+      "family": "exact_composition",
+      "representation": "native",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "expressible": true,
+      "n_instances": 300,
+      "note": ""
+    },
+    {
+      "family": "group_lookup",
+      "representation": "dissolved",
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "expressible": false,
+      "n_instances": 300,
+      "note": "there is no complex to return"
+    },
+    {
+      "family": "group_lookup",
+      "representation": "reified",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "expressible": true,
+      "n_instances": 300,
+      "note": ""
+    },
+    {
+      "family": "group_lookup",
+      "representation": "native",
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "expressible": true,
+      "n_instances": 300,
+      "note": ""
+    }
+  ],
+  "queries_pivot": {
+    "dissolved": {
+      "co_membership": 0.9361578360789785,
+      "exclusion": 0.0,
+      "group_size": 0.0,
+      "exact_composition": 0.0,
+      "group_lookup": 0.0
+    },
+    "reified": {
+      "co_membership": 1.0,
+      "exclusion": 1.0,
+      "group_size": 1.0,
+      "exact_composition": 1.0,
+      "group_lookup": 1.0
+    },
+    "native": {
+      "co_membership": 1.0,
+      "exclusion": 1.0,
+      "group_size": 1.0,
+      "exact_composition": 1.0,
+      "group_lookup": 1.0
+    }
+  },
+  "equivalence": {
+    "max_abs_diff_vs_size_weighted_pairwise": 4.440892098500626e-16,
+    "max_abs_diff_vs_unweighted_pairwise": 0.5000000000000002,
+    "equivalent": true,
+    "distinct_from_unweighted": true
+  },
+  "communities": [
+    {
+      "method": "pairwise_unweighted",
+      "k": 33,
+      "n_nodes": 1181,
+      "nmi": 0.3868606372601053,
+      "ari": 0.11510938824296618
+    },
+    {
+      "method": "pairwise_size_weighted",
+      "k": 33,
+      "n_nodes": 1181,
+      "nmi": 0.38948485726711096,
+      "ari": 0.1113060445521241
+    },
+    {
+      "method": "hypergraph_laplacian",
+      "k": 33,
+      "n_nodes": 1181,
+      "nmi": 0.38572296971694053,
+      "ari": 0.11208594504536815
+    }
+  ],
+  "formation": {
+    "basis": "timestamp",
+    "cut": 2006.0,
+    "quantile": 0.5,
+    "n_early_groups": 2625,
+    "n_late_groups": 2597,
+    "n_candidate_triples": 1511,
+    "n_positives": 37,
+    "base_rate": 0.024487094639311716,
+    "null_distribution": {
+      "draws": 2000,
+      "mean_lift": 1.1895134844226858,
+      "p95_lift": 1.8519560731025693,
+      "p99_lift": 2.5041587150566644
+    },
+    "scores": [
+      {
+        "scorer": "common_neighbours",
+        "average_precision": 0.05846629530303993,
+        "lift_over_random": 2.3876370865646845,
+        "p_value": 0.015,
+        "beats_chance": true
+      },
+      {
+        "scorer": "tie_strength_geometric",
+        "average_precision": 0.05042330280464071,
+        "lift_over_random": 2.059178663184111,
+        "p_value": 0.0345,
+        "beats_chance": true
+      },
+      {
+        "scorer": "tie_strength_harmonic",
+        "average_precision": 0.045763823282854825,
+        "lift_over_random": 1.868895594064693,
+        "p_value": 0.0485,
+        "beats_chance": true
+      },
+      {
+        "scorer": "tie_strength_arithmetic",
+        "average_precision": 0.04272203587046336,
+        "lift_over_random": 1.7446755729802739,
+        "p_value": 0.0595,
+        "beats_chance": false
+      },
+      {
+        "scorer": "preferential_attachment",
+        "average_precision": 0.022493262041789395,
+        "lift_over_random": 0.9185761877065884,
+        "p_value": 0.8765,
+        "beats_chance": false
+      }
+    ],
+    "n_beating_chance": 3,
+    "underpowered": true
+  },
+  "footprint": [
+    {
+      "representation": "dissolved",
+      "nodes": 4777,
+      "edges": 20976,
+      "extra_nodes": 0,
+      "stored_cells": 20976,
+      "node_ratio_vs_dissolved": 1.0,
+      "edge_ratio_vs_dissolved": 1.0
+    },
+    {
+      "representation": "reified",
+      "nodes": 9999,
+      "edges": 17138,
+      "extra_nodes": 5222,
+      "stored_cells": 17138,
+      "node_ratio_vs_dissolved": 2.0931546996022607,
+      "edge_ratio_vs_dissolved": 0.8170289855072463
+    },
+    {
+      "representation": "native",
+      "nodes": 4777,
+      "edges": 5222,
+      "extra_nodes": 0,
+      "stored_cells": 17138,
+      "node_ratio_vs_dissolved": 1.0,
+      "edge_ratio_vs_dissolved": 0.24895118230358504
+    }
+  ],
+  "build_timing": [
+    {
+      "representation": "dissolved",
+      "build_seconds": 0.052412916000008636
+    },
+    {
+      "representation": "reified",
+      "build_seconds": 0.043247534000002474
+    },
+    {
+      "representation": "native",
+      "build_seconds": 0.005500151000006781
+    }
+  ],
+  "tooling": [
+    {
+      "area": "tensor centralities",
+      "observation": "CEC / ZEC centrality require a uniform hypergraph, i.e. every group the same size. Complex data spans sizes 2 to 129, so these are unavailable without slicing the data by size first.",
+      "impact": "medium"
+    },
+    {
+      "area": "spectral clustering",
+      "observation": "The library's spectral routine drops isolated nodes before clustering, so its output rows no longer align with the node list returned by the hypergraph object. Aligning them incorrectly produces a plausible but wrong score.",
+      "impact": "high - silent wrong answer",
+      "mitigation": "obtain the index-to-node map from the incidence matrix, and check for zero-degree nodes before interpreting any output"
+    },
+    {
+      "area": "projections",
+      "observation": "clique_projection returns a networkx graph; bipartite_projection returns a tuple. The asymmetry is easy to miss.",
+      "impact": "low"
+    },
+    {
+      "area": "group identity",
+      "observation": "Constructing a hypergraph from an edge list silently merges groups with identical membership, since a hyperedge is a set. Distinct groups that happen to share a composition are lost.",
+      "impact": "medium - affects counts"
+    },
+    {
+      "area": "ecosystem",
+      "observation": "No managed hypergraph store comparable to a production property graph. Persistence, access control and bulk import must be built.",
+      "impact": "high for production use"
+    }
+  ],
+  "tradeoffs_headline": "Hub nodes add 5222 nodes (+109% vs pairwise) but -18% edges; hyperedges store the same information in 5222 objects.",
+  "traversal": [
+    {
+      "representation": "dissolved",
+      "hops": 1,
+      "intermediate": "none",
+      "cypher_sketch": "(x)-[:INTERACTS]-(y)",
+      "note": "one hop, but returns anything connected to X rather than anything in a complex with X"
+    },
+    {
+      "representation": "reified",
+      "hops": 2,
+      "intermediate": "complex node",
+      "cypher_sketch": "(x)<-[:HAS_SUBUNIT]-(c:Complex)-[:HAS_SUBUNIT]->(y)",
+      "note": "correct; every question about members must route through the complex node, and frequently-reused proteins make those nodes hot"
+    },
+    {
+      "representation": "native",
+      "hops": 1,
+      "intermediate": "hyperedge",
+      "cypher_sketch": "n/a - not a property graph",
+      "note": "the group is the object; member lookup is direct"
+    }
+  ],
+  "algorithms": [
+    {
+      "operation": "shortest path / connectivity",
+      "dissolved": "native",
+      "reified": "native",
+      "native": "via projection"
+    },
+    {
+      "operation": "degree / betweenness centrality",
+      "dissolved": "native",
+      "reified": "native (inflated by hub nodes)",
+      "native": "via projection"
+    },
+    {
+      "operation": "community detection",
+      "dissolved": "native",
+      "reified": "native",
+      "native": "native"
+    },
+    {
+      "operation": "count groups by size",
+      "dissolved": "unavailable",
+      "reified": "native",
+      "native": "native"
+    },
+    {
+      "operation": "set membership / exclusion query",
+      "dissolved": "unavailable",
+      "reified": "native",
+      "native": "native"
+    },
+    {
+      "operation": "group-level prediction",
+      "dissolved": "unavailable",
+      "reified": "possible, must reassemble members",
+      "native": "native"
+    },
+    {
+      "operation": "higher-order motif analysis",
+      "dissolved": "unavailable",
+      "reified": "unavailable",
+      "native": "native"
+    },
+    {
+      "operation": "runs in existing property-graph store",
+      "dissolved": "yes",
+      "reified": "yes",
+      "native": "no"
+    }
+  ],
+  "verdict": [
+    "Dissolving complexes into pairs loses information: F1 0.696, 973 groups invented, 1,885 lost.",
+    "Hub nodes and hyperedges are both lossless and carry identical information; the choice between them is operational, not representational.",
+    "Query expressibility: pairwise answers 0/5 question types exactly; group-preserving forms answer all of them.",
+    "Hypergraph spectral clustering is the size-weighted pairwise operator (verified numerically), so no advantage should be expected there, and none is observed.",
+    "Footprint: hub nodes add 5,222 nodes but -18% edges relative to the pairwise graph.",
+    "The separately sourced interaction layer covers only 10.9% of complex co-membership pairs, so it is not a substitute for complex records."
+  ],
+  "environment": {
+    "nary_lab": "1.0.0",
+    "python": "3.12.3",
+    "platform": "Linux-6.18.44-fc-v140-x86_64-with-glibc2.39",
+    "git_commit": "unknown",
+    "numpy": "2.4.4",
+    "networkx": "3.6.1",
+    "scipy": "1.17.1",
+    "sklearn": "1.8.0",
+    "hypergraphx": "1.8.0"
+  },
+  "wall_seconds": 28.1
+}
